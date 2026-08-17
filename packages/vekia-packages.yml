@@ -1,0 +1,46 @@
+generated: '2026-08-17'
+method: searched
+source: >-
+  public package registries + https://www.vekia.fr/ (integrations, platform and
+  technology pages)
+packages: []
+package_count: 0
+note: >-
+  Vekia publishes no first-party client library, SDK or CLI in any public
+  registry, and no GitHub organization exists at github.com/vekia (HTTP 404).
+  The company describes integration as ERP/WMS/TMS data synchronisation
+  delivered by its own team — "Our technology integrates easily with major ERP
+  systems like SAP, Oracle, Microsoft Dynamics, and Infor, as well as with
+  varied WMS, ensuring smooth data synchronization" — with no downloadable
+  client for a developer to install.
+registries_checked:
+- registry: npm
+  query: vekia
+  result: no first-party package
+- registry: pypi
+  package: vekia
+  status: 404
+  result: absent
+- registry: rubygems
+  result: no first-party package
+- registry: crates.io
+  result: no first-party package
+- registry: nuget
+  result: no first-party package
+- registry: maven-central
+  result: no first-party package
+- registry: pkg.go.dev
+  result: no first-party package
+- registry: packagist
+  result: no first-party package
+- registry: github
+  url: https://api.github.com/orgs/vekia
+  status: 404
+  result: no organization
+x-evidence:
+  fetched: '2026-08-17'
+  probes:
+  - url: https://api.github.com/orgs/vekia
+    status: 404
+  - url: https://pypi.org/pypi/vekia/json
+    status: 404

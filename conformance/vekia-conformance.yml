@@ -1,0 +1,83 @@
+generated: '2026-08-17'
+method: probed
+source: >-
+  well-known/vekia-oauth-authorization-server.json,
+  well-known/vekia-oauth-protected-resource.json,
+  https://www.vekia.fr/technologie/, https://www.vekia.fr/integrations/
+scope_note: >-
+  Every "conforms: true" row below is evidenced by a document served from
+  www.vekia.fr, the corporate WordPress site. None of them describes the Vekia
+  Engine supply-chain product API, which publishes no machine-readable contract.
+  Standards that would normally be asserted from an OpenAPI (RFC 9457 problem
+  details, JSON:API, OData, pagination, idempotency) are recorded as unknown
+  rather than false, because there is no contract to read them from.
+standards:
+- id: oauth2
+  conforms: true
+  evidence: >-
+    RFC 8414 metadata at /.well-known/oauth-authorization-server declares
+    authorization_code + refresh_token grants with authorize/token/revoke
+    endpoints
+- id: rfc8414-oauth-authorization-server-metadata
+  conforms: true
+  evidence: 'HTTP 200 JSON at https://www.vekia.fr/.well-known/oauth-authorization-server'
+- id: rfc9728-oauth-protected-resource-metadata
+  conforms: true
+  evidence: 'HTTP 200 JSON at https://www.vekia.fr/.well-known/oauth-protected-resource'
+- id: rfc7636-pkce
+  conforms: true
+  evidence: 'code_challenge_methods_supported: [S256]'
+- id: mcp
+  conforms: true
+  evidence: >-
+    OAuth protected resource names an MCP endpoint at
+    https://www.vekia.fr/wp-json/mcp/mcp-oauth-server with a single `mcp` scope;
+    tools/list is auth-gated (HTTP 403). WordPress CMS bridge, not the product
+    API — see mcp/vekia-mcp.yml
+- id: oidc
+  conforms: false
+  evidence: '/.well-known/openid-configuration returns the site HTML 404 page'
+- id: rfc9116-security-txt
+  conforms: false
+  evidence: '/.well-known/security.txt returns the site HTML 404 page'
+- id: rfc8615-well-known-agent-card
+  conforms: false
+  evidence: >-
+    both /.well-known/agent-card.json and the legacy /.well-known/agent.json
+    return the site HTML 404 page
+- id: gdpr
+  conforms: claimed
+  evidence: >-
+    Marketing prose only. The technology page states the solution respects "les
+    normes RGPD" and is "Hébergée sur Microsoft Azure en Europe"; a French
+    privacy policy is published at /politique-de-confidentialite/ (EN at
+    /en/privacy-policy/). No DPA, certification or audit report is published.
+- id: soc2
+  conforms: false
+  evidence: no SOC 2 claim on any public page; no trust centre (trust.vekia.fr NXDOMAIN)
+- id: iso-27001
+  conforms: false
+  evidence: no ISO 27001 claim on any public page
+- id: rfc9457-problem-details
+  conforms: unknown
+  evidence: no published API contract to evaluate
+- id: openapi
+  conforms: unknown
+  evidence: >-
+    no OpenAPI found on any host; /openapi.json, /swagger.json and /api-docs all
+    return the site HTML 404 page
+x-evidence:
+  fetched: '2026-08-17'
+  probes:
+  - url: https://www.vekia.fr/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://www.vekia.fr/.well-known/oauth-protected-resource
+    status: 200
+  - url: https://www.vekia.fr/.well-known/openid-configuration
+    status: 404
+  - url: https://www.vekia.fr/openapi.json
+    status: 404
+  - url: https://www.vekia.fr/swagger.json
+    status: 404
+  - url: https://www.vekia.fr/technologie/
+    status: 200

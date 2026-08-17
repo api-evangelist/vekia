@@ -42,6 +42,29 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Vekia is a company surfaced as a portfolio company of serena and added to the API Evangelist network as a stub for enrichment. Sector: ai-data. This profile is a lead awaiting the enrichment pipeline.
+Vekia is a French supply-chain software vendor founded in 2008 in Lille by Manuel Davy (Vekia SAS,
+143 rue d'Athènes, 59800 Lille, RCS Lille Métropole 503 225 716). Its platform, **Vekia Engine**,
+applies probabilistic AI and machine learning to demand and stock forecasting, then generates
+optimised purchase-order proposals pushed back into the customer's existing ERP, alongside
+shortage-risk alerting and a logistics control tower. **Vekia Disrupt** covers disruption and
+shortage management. The platform is hosted on Microsoft Azure in Europe and sold to retail and
+specialised distribution, e-commerce, industry, energy and telecom, with published case studies at
+ENGIE, Mr Bricolage and Okaïdi.
+
+## Developer surface
+
+**Vekia publishes no public API.** There is no developer portal, no API reference, no SDK and no
+machine-readable contract of any kind — no OpenAPI, AsyncAPI, GraphQL SDL, JSON Schema or Postman
+collection. `api.vekia.fr`, `docs.vekia.fr`, `developer.vekia.fr` and `app.vekia.fr` do not resolve;
+`/developers` and `/api` return the site's 404; there is no GitHub organization and no package in any
+public registry. ERP/WMS/TMS integration is delivered as a project by Vekia's own team.
+
+Two real machine-readable documents *are* served from `www.vekia.fr`, both belonging to the WordPress
+installation behind the corporate site rather than to the product: RFC 8414 OAuth authorization
+server metadata and RFC 9728 protected resource metadata, which name an OAuth-gated WordPress MCP
+endpoint (`/wp-json/mcp/mcp-oauth-server`, HTTP 403 unauthenticated). They are recorded in
+[`well-known/`](well-known/vekia-well-known.yml) and [`mcp/`](mcp/vekia-mcp.yml) with that caveat
+stated, and deliberately carry **no** `MCPServer` pointer — see `x-artifacts-without-pointers` in
+`apis.yml`.
 
 Source: portfolio company of [serena](https://github.com/api-evangelist/serena) — https://www.vekia.fr/

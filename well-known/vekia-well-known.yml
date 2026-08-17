@@ -1,0 +1,66 @@
+generated: '2026-08-17'
+method: probed
+source: https://www.vekia.fr/.well-known/
+host: https://www.vekia.fr
+note: >-
+  Vekia publishes no API host of its own (api.vekia.fr, docs.vekia.fr,
+  developer.vekia.fr and app.vekia.fr all NXDOMAIN), so the only host with a
+  /.well-known/ surface is the corporate WordPress site at www.vekia.fr. Two
+  paths returned real JSON documents: RFC 8414 OAuth 2.0 Authorization Server
+  Metadata and RFC 9728 OAuth 2.0 Protected Resource Metadata. Both describe a
+  WordPress-hosted Model Context Protocol endpoint
+  (https://www.vekia.fr/wp-json/mcp/mcp-oauth-server) with a single `mcp` scope
+  — site/CMS plumbing, NOT the Vekia Engine supply-chain product API. See
+  mcp/vekia-mcp.yml. Every other probed path returned the site's HTML 404 page.
+documents:
+- path: /.well-known/oauth-authorization-server
+  status: 200
+  content_type: application/json
+  file: vekia-oauth-authorization-server.json
+  spec: RFC 8414
+- path: /.well-known/oauth-protected-resource
+  status: 200
+  content_type: application/json
+  file: vekia-oauth-protected-resource.json
+  spec: RFC 9728
+- path: /.well-known/security.txt
+  status: 404
+  note: HTML 404 page, no RFC 9116 document
+- path: /.well-known/openid-configuration
+  status: 404
+- path: /.well-known/api-catalog
+  status: 404
+- path: /.well-known/ai-plugin.json
+  status: 404
+- path: /.well-known/agent-card.json
+  status: 404
+- path: /.well-known/agent.json
+  status: 404
+oauth:
+  issuer: https://www.vekia.fr
+  authorization_endpoint: https://www.vekia.fr/oauth/authorize
+  token_endpoint: https://www.vekia.fr/oauth/token
+  revocation_endpoint: https://www.vekia.fr/oauth/revoke
+  grant_types_supported:
+  - authorization_code
+  - refresh_token
+  code_challenge_methods_supported:
+  - S256
+  scopes_supported:
+  - mcp
+  token_endpoint_auth_methods_supported:
+  - none
+  client_id_metadata_document_supported: true
+x-evidence:
+  fetched: '2026-08-17'
+  probes:
+  - url: https://www.vekia.fr/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://www.vekia.fr/.well-known/oauth-protected-resource
+    status: 200
+  - url: https://www.vekia.fr/.well-known/security.txt
+    status: 404
+  - url: https://www.vekia.fr/.well-known/agent-card.json
+    status: 404
+  - url: https://www.vekia.fr/.well-known/agent.json
+    status: 404

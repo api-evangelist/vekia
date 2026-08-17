@@ -1,0 +1,60 @@
+generated: '2026-08-17'
+method: probed
+source: https://www.vekia.fr/.well-known/oauth-protected-resource
+status: published
+deployment:
+  mode: remote
+  endpoint: https://www.vekia.fr/wp-json/mcp/mcp-oauth-server
+  auth: oauth
+  verified: probed
+server:
+  name: vekia-wordpress-mcp
+  transport: http
+  url: https://www.vekia.fr/wp-json/mcp/mcp-oauth-server
+  advertised_by: https://www.vekia.fr/.well-known/oauth-protected-resource
+  authorization_server: https://www.vekia.fr
+  scopes:
+  - mcp
+tools: []
+tools_note: >-
+  tools/list could not be enumerated. An unauthenticated JSON-RPC POST of
+  {"jsonrpc":"2.0","id":1,"method":"tools/list"} returned HTTP 403
+  {"code":"wp_die","message":"You are not authorized to perform this action."},
+  as did initialize. The live tool schemas require an authenticated WordPress
+  OAuth token; no tool names or input schemas are published anywhere, so none
+  are recorded here.
+x-scope-caveat: >-
+  THIS IS NOT THE VEKIA PRODUCT API. The endpoint is the Model Context Protocol
+  bridge exposed by the WordPress installation that serves the vekia.fr
+  corporate site (WordPress MCP adapter pattern: /wp-json/mcp/... namespace,
+  single `mcp` scope, WordPress-user OAuth, dynamic public client registration
+  via client_id_metadata_document). It surfaces website/CMS content management
+  to an authenticated WordPress user, not the Vekia Engine supply-chain
+  forecasting and replenishment platform, which publishes no API documentation,
+  no developer portal and no machine-readable contract at all.
+x-pointer-withheld:
+  type: MCPServer
+  reason: >-
+    No `type: MCPServer` pointer is wired in apis.yml. The pointer asserts that
+    the provider offers an MCP server an agent can use against its product, and
+    it carries 12 pts of Agent Readiness plus 4 pts of ergonomics. This endpoint
+    is a CMS admin bridge reachable only with a WordPress account on vekia.fr,
+    so crediting it would report an agent surface Vekia did not build and no
+    external agent can use. The finding is recorded here in full instead of
+    being scored.
+x-evidence:
+  fetched: '2026-08-17'
+  probes:
+  - url: https://www.vekia.fr/.well-known/oauth-protected-resource
+    status: 200
+  - url: https://www.vekia.fr/.well-known/oauth-authorization-server
+    status: 200
+  - url: https://www.vekia.fr/wp-json/mcp/mcp-oauth-server
+    method: POST tools/list
+    status: 403
+  - url: https://www.vekia.fr/wp-json/mcp/mcp-oauth-server
+    method: POST initialize
+    status: 403
+  - url: https://www.vekia.fr/wp-json/mcp/mcp-oauth-server
+    method: GET
+    status: 403

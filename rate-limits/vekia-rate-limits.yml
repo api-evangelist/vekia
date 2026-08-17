@@ -1,0 +1,24 @@
+generated: '2026-08-17'
+method: searched
+source: https://www.vekia.fr/
+rate_limits: []
+limit_count: 0
+note: >-
+  No rate limits are documented, because Vekia documents no API. There is no
+  developer portal, no API reference and no docs host (developer.vekia.fr,
+  docs.vekia.fr and api.vekia.fr do not resolve; /developers returns the site
+  404), so there is no published window, quota, burst allowance, exhaustion
+  status code or RateLimit-* response header to record. The only publicly
+  reachable HTTP API on the domain is the WordPress site's own REST namespace
+  (https://www.vekia.fr/wp-json/wp/v2, HTTP 200), which publishes no rate-limit
+  contract either.
+headers: []
+x-evidence:
+  fetched: '2026-08-17'
+  probes:
+  - url: https://www.vekia.fr/developers
+    status: 404
+  - url: https://www.vekia.fr/api
+    status: 404
+  - url: https://www.vekia.fr/wp-json/wp/v2
+    status: 200

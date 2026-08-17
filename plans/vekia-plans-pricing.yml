@@ -1,0 +1,28 @@
+generated: '2026-08-17'
+method: searched
+source: https://www.vekia.fr/demo/
+plans: []
+plan_count: 0
+note: >-
+  Vekia publishes no pricing page and no plans of any kind. The site's page
+  sitemap (https://www.vekia.fr/page-sitemap.xml, HTTP 200, 83 URLs) contains no
+  pricing page in either language — /pricing/, /en/pricing/ and /tarifs/ all
+  return 404 — and the commercial call to action is a demonstration request form
+  at /demo/ plus a contact form at /contact/. Vekia Engine is sold as an enterprise supply-chain platform through
+  a sales conversation, so there is no self-serve tier, quota or overage to
+  record.
+pricing_model: contact-sales
+signup: none
+x-evidence:
+  fetched: '2026-08-17'
+  probes:
+  - url: https://www.vekia.fr/page-sitemap.xml
+    status: 200
+  - url: https://www.vekia.fr/demo/
+    status: 200
+  - url: https://www.vekia.fr/pricing/
+    status: 404
+  - url: https://www.vekia.fr/en/pricing/
+    status: 404
+  - url: https://www.vekia.fr/tarifs/
+    status: 404

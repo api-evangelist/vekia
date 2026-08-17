@@ -1,18 +1,37 @@
 aid: vekia
 name: Vekia
-description: 'Vekia is a company surfaced as a portfolio company of serena and added to the API Evangelist
-  network as a stub for enrichment. Sector: ai-data. This profile is a lead awaiting the enrichment pipeline.'
+description: 'Vekia is a French supply-chain software vendor founded in 2008 in Lille
+  by Manuel Davy (Vekia SAS, 143 rue d''Athènes, 59800 Lille, RCS Lille Métropole
+  503 225 716). Its platform, Vekia Engine, applies probabilistic artificial intelligence
+  and machine learning to demand and stock forecasting, then generates optimised purchase-order
+  proposals that are pushed back into the customer''s existing ERP rather than replacing
+  it, alongside shortage-risk alerting and a logistics control tower. Vekia Disrupt
+  covers disruption and shortage management. The platform is hosted on Microsoft Azure
+  in Europe and marketed to retail and specialised distribution, e-commerce, industry,
+  energy and telecom, with published case studies at ENGIE, Mr Bricolage and Okaïdi.
+  Vekia publishes no public API, no developer portal, no API reference and no machine-readable
+  contract; ERP, WMS and TMS integration is delivered as a project by Vekia rather
+  than through a self-serve developer surface.'
 url: https://raw.githubusercontent.com/api-evangelist/vekia/refs/heads/main/apis.yml
+image: https://www.vekia.fr/wp-content/uploads/2019/04/solution-supply-chain-vekia.png
 x-type: company
 x-source: serena-portfolio
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: profiled
+x-tier-reason: no-public-api-surface
 specificationVersion: '0.20'
 created: '2026-08-17'
 modified: '2026-08-17'
 tags:
 - Company
-- Ai Data
+- Supply Chain
+- Demand Forecasting
+- Inventory Optimization
+- Replenishment
+- Retail
+- Machine Learning
+- Artificial Intelligence
+- Logistics
+- France
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -22,3 +41,66 @@ maintainers:
 common:
 - type: Website
   url: https://www.vekia.fr/
+- type: Blog
+  url: https://www.vekia.fr/en/supply-chain-blog/
+- type: Contact
+  url: https://www.vekia.fr/contact/
+- type: PrivacyPolicy
+  url: https://www.vekia.fr/en/privacy-policy/
+- type: WellKnown
+  url: well-known/vekia-well-known.yml
+- type: DomainSecurity
+  url: security/vekia-domain-security.yml
+- type: Conformance
+  url: conformance/vekia-conformance.yml
+- type: LLMsTxt
+  url: llms/vekia-llms.txt
+x-artifacts-without-pointers:
+  note: >-
+    These artifacts were written by the enrichment pass but deliberately carry NO
+    common[] pointer, because each one documents an ABSENCE (or a surface that is
+    not Vekia's product API) and a pointer would be scored as a presence.
+  files:
+  - file: packages/vekia-packages.yml
+    withheld: SDKs, Packages
+    reason: package_count 0 — no first-party SDK, CLI or package in any registry
+  - file: plans/vekia-plans-pricing.yml
+    withheld: Plans, Pricing
+    reason: plan_count 0 — no pricing page exists; demo request only
+  - file: rate-limits/vekia-rate-limits.yml
+    withheld: RateLimits
+    reason: limit_count 0 — no API is documented, so no limits or headers exist
+  - file: mcp/vekia-mcp.yml
+    withheld: MCPServer
+    reason: >-
+      A real OAuth-gated MCP endpoint exists at
+      https://www.vekia.fr/wp-json/mcp/mcp-oauth-server, but it is the WordPress
+      CMS bridge for the corporate site, reachable only with a WordPress account
+      — not an agent surface for the Vekia Engine product. See the artifact.
+x-enrichment:
+  date: '2026-08-17'
+  status: minimal
+  artifacts_added: 10
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: no-developer-program
+  detail: >-
+    Vekia sells Vekia Engine as an enterprise supply-chain platform that its own
+    team wires into a customer's ERP, and publishes no developer program at all —
+    api.vekia.fr, docs.vekia.fr and developer.vekia.fr do not resolve, /developers
+    and /api return the site 404, and the only machine-readable surfaces on
+    www.vekia.fr are its WordPress REST namespace and an OAuth-gated WordPress MCP
+    endpoint, neither of which is the product API.
+  evidence:
+  - url: https://www.vekia.fr/developers
+    status: 404
+  - url: https://www.vekia.fr/api
+    status: 404
+  - url: https://www.vekia.fr/openapi.json
+    status: 404
+  - url: https://www.vekia.fr/.well-known/agent-card.json
+    status: 404
+  - url: https://www.vekia.fr/wp-json/mcp/mcp-oauth-server
+    status: 403
+  checked: '2026-08-17'
