@@ -13,6 +13,17 @@ description: 'Vekia is a French supply-chain software vendor founded in 2008 in 
   contract; ERP, WMS and TMS integration is delivered as a project by Vekia rather
   than through a self-serve developer surface.'
 url: https://raw.githubusercontent.com/api-evangelist/vekia/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: false
+  commercial: false
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - none
+  generated: '2026-08-28'
+  method: derived
 image: https://www.vekia.fr/wp-content/uploads/2019/04/solution-supply-chain-vekia.png
 x-type: company
 x-source: serena-portfolio
