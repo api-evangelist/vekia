@@ -2,40 +2,13 @@ generated: '2026-08-17'
 method: probed
 source: https://www.vekia.fr/.well-known/
 host: https://www.vekia.fr
-note: >-
-  Vekia publishes no API host of its own (api.vekia.fr, docs.vekia.fr,
-  developer.vekia.fr and app.vekia.fr all NXDOMAIN), so the only host with a
-  /.well-known/ surface is the corporate WordPress site at www.vekia.fr. Two
-  paths returned real JSON documents: RFC 8414 OAuth 2.0 Authorization Server
-  Metadata and RFC 9728 OAuth 2.0 Protected Resource Metadata. Both describe a
-  WordPress-hosted Model Context Protocol endpoint
-  (https://www.vekia.fr/wp-json/mcp/mcp-oauth-server) with a single `mcp` scope
-  — site/CMS plumbing, NOT the Vekia Engine supply-chain product API. See
-  mcp/vekia-mcp.yml. Every other probed path returned the site's HTML 404 page.
-documents:
-- path: /.well-known/oauth-authorization-server
-  status: 200
-  content_type: application/json
-  file: vekia-oauth-authorization-server.json
-  spec: RFC 8414
-- path: /.well-known/oauth-protected-resource
-  status: 200
-  content_type: application/json
-  file: vekia-oauth-protected-resource.json
-  spec: RFC 9728
-- path: /.well-known/security.txt
-  status: 404
-  note: HTML 404 page, no RFC 9116 document
-- path: /.well-known/openid-configuration
-  status: 404
-- path: /.well-known/api-catalog
-  status: 404
-- path: /.well-known/ai-plugin.json
-  status: 404
-- path: /.well-known/agent-card.json
-  status: 404
-- path: /.well-known/agent.json
-  status: 404
+note: 'Vekia publishes no API host of its own (api.vekia.fr, docs.vekia.fr, developer.vekia.fr and app.vekia.fr
+  all NXDOMAIN), so the only host with a /.well-known/ surface is the corporate WordPress site at www.vekia.fr.
+  Two paths returned real JSON documents: RFC 8414 OAuth 2.0 Authorization Server Metadata and RFC 9728
+  OAuth 2.0 Protected Resource Metadata. Both describe a WordPress-hosted Model Context Protocol endpoint
+  (https://www.vekia.fr/wp-json/mcp/mcp-oauth-server) with a single `mcp` scope — site/CMS plumbing, NOT
+  the Vekia Engine supply-chain product API. See mcp/vekia-mcp.yml. Every other probed path returned the
+  site''s HTML 404 page.'
 oauth:
   issuer: https://www.vekia.fr
   authorization_endpoint: https://www.vekia.fr/oauth/authorize
@@ -64,3 +37,32 @@ x-evidence:
     status: 404
   - url: https://www.vekia.fr/.well-known/agent.json
     status: 404
+hosts:
+- host: https://www.vekia.fr
+  documents:
+  - path: /.well-known/oauth-authorization-server
+    status: 200
+    file: vekia-oauth-authorization-server.json
+    content_type: application/json
+  - path: /.well-known/oauth-protected-resource
+    status: 200
+    file: vekia-oauth-protected-resource.json
+    content_type: application/json
+  - path: /.well-known/security.txt
+    status: 404
+    note: HTML 404 page, no RFC 9116 document
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/api-catalog
+    status: 404
+  - path: /.well-known/ai-plugin.json
+    status: 404
+  - path: /.well-known/agent-card.json
+    status: 404
+  - path: /.well-known/agent.json
+    status: 404
+x-shape-fix:
+  converted: '2026-08-20'
+  from: documents
+  note: Rewritten into hosts[] -> documents[], the only shape well_known_docs() in score.rb reads. A served
+    .well-known surface recorded in any other shape scores as absent.
