@@ -52,7 +52,7 @@ tags:
 - Inventory Optimization
 - Replenishment
 - Retail
-- Machine-Learning
+- Machine Learning
 - Artificial Intelligence
 - Logistics
 - France
@@ -67,6 +67,7 @@ tags_raw:
 - Artificial Intelligence
 - Logistics
 - France
+- Machine-Learning
 apis: []
 maintainers:
 - FN: Kin Lane
